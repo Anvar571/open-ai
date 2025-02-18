@@ -2,18 +2,21 @@ import { QdrantClient } from '@qdrant/js-client-rest';
 import { AppConfig } from './config';
 
 export interface IQdrant {
-    getQdrant: () => QdrantClient;
+  getQdrant: () => QdrantClient;
 }
 
 export class Qdrant implements IQdrant {
-    private qdrant: QdrantClient;
+  private qdrant: QdrantClient;
 
-    constructor() {
-        const apiKey = AppConfig.getInstance().getQdrantKey;
-        this.qdrant = new QdrantClient({ apiKey });
-    }
+  constructor() {
+    const { key, url } = AppConfig.getInstance().getQdrantConfigs;
+    this.qdrant = new QdrantClient({
+      url,
+      apiKey: key,
+    });
+  }
 
-    public getQdrant(): QdrantClient {
-        return this.qdrant;
-    }
+  public getQdrant(): QdrantClient {
+    return this.qdrant;
+  }
 }

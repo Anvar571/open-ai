@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon src/main.ts",
-    "start:prod": "tsc && node src/main.js",
+    "start:prod": "tcs && node src/main.js",
     "build": "tsc",
     "prepare": "husky"
   },
@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.36.3",
     "@qdrant/js-client-rest": "^1.13.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
