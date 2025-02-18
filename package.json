@@ -1,0 +1,33 @@
+{
+    "name": "chatbot-ai",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start:dev": "nodemon src/main.ts",
+        "start": "tsc && node src/main.js",
+        "build": "tsc",
+        "prepare": "husky"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@qdrant/js-client-rest": "^1.13.0",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.7",
+        "express": "^4.21.2",
+        "husky": "^9.1.7",
+        "lint-staged": "^15.4.3",
+        "multer": "1.4.5-lts.1",
+        "openai": "^4.85.1"
+    },
+    "devDependencies": {
+        "@types/express": "^5.0.0",
+        "@types/node": "^22.13.4",
+        "nodemon": "^3.1.9",
+        "prettier": "^3.5.1",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.7.3"
+    }
+}

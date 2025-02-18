@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "moduleResolution": "node",
+        "module": "CommonJS",
+        "baseUrl": "./src",
+        "target": "ESNext",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules"]
+}
