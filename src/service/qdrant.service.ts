@@ -7,7 +7,7 @@ export class QdrantService {
     private openai: IOpenAI,
   ) {}
 
-  public async searchInQdrant(text: string) {
+  public async searchInQdrant(text: string, collectionName?: string) {
     const result = await this.qdrant.getQdrant().search('collection', {
       vector: Array(256).fill(0.1),
       limit: 5,
@@ -15,7 +15,7 @@ export class QdrantService {
     return result.map((res) => res.payload?.text);
   }
 
-  public async save(text: string, id: string | number) {
+  public async save(text: string, collection: string, id: string | number) {
     // for test becouse embedding is paid
     const randomVector = Array(256)
       .fill(undefined)
@@ -29,7 +29,7 @@ export class QdrantService {
       },
     ];
 
-    await this.qdrant.getQdrant().upsert('collection', {
+    await this.qdrant.getQdrant().upsert(collection, {
       points: points,
     });
   }
@@ -51,13 +51,18 @@ export class QdrantService {
     return res.choices[0].message.content;
   }
 
-  async createCollection(name: string, size: number) {
+  async createCollection(name: string, size = 200) {
     try {
       await this.qdrant.getQdrant().createCollection(name, {
         vectors: { size, distance: 'Cosine' },
       });
     } catch (err) {
-      console.log('Collection happened error', err);
+      return err;
     }
+  }
+
+  private async textToVector(text: string) {
+    const response = await this.openai.generateEmbedding(text);
+    return response;
   }
 }

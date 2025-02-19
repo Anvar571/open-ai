@@ -17,7 +17,11 @@ export class ChatController {
     return this.qdrantService.ask(question);
   }
 
-  public save(text: string, id: string | number) {
-    return this.qdrantService.save(text, id);
+  public save(text: string, collectionName: string, id: string | number) {
+    return this.qdrantService.save(text, collectionName, id);
+  }
+
+  public createCollection(name: string) {
+    return this.qdrantService.createCollection(name);
   }
 }

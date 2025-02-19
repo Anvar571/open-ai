@@ -1,6 +1,7 @@
 import chatRouter from './routes/chat';
 import { AppConfig } from './config/config';
 import express, { Application } from 'express';
+import cors from 'cors';
 import { errorHandler } from './error/error.handler';
 
 class App {
@@ -14,6 +15,7 @@ class App {
 
   public routes() {
     this.app.use(express.json());
+    this.app.use(cors());
     this.app.use('/chat', chatRouter);
     this.app.use(errorHandler);
   }
